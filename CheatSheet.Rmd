@@ -1,0 +1,76 @@
+---
+title: "CheatSheet"
+output:
+  pdf_document: default
+  html_document: default
+date: "2023-09-14"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Prérequis pour utiliser l'API Vélov
+
+## Création de l'API Key
+
+Sur le site <https://developer.jcdecaux.com/#/opendata/vls?page=getstarted>.
+
+## Présentation de l'API
+
+Sur la page <https://developer.jcdecaux.com/#/opendata/vls?page=dynamic>
+
+## Utiliser une API avec R
+
+Sur la page <https://statisticsglobe.com/api-in-r#what-is-an-api>
+
+# Utilisation de l'API
+
+## Librairies utilisées
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(httr)
+library(jsonlite)
+library("rjson")
+```
+
+## Url disponibles
+
+Il est possible d'utiliser deux url avec l'API :
+
+
+### Données d'une seule station
+
+`GET https://api.jcdecaux.com/vls/v1/stations/{station_number}?contract={contract_name}&apiKey={api_key}`
+
+```{r, echo = TRUE, eval = FALSE}
+base_url = "https://api.jcdecaux.com/vls/v3/"
+contract = "Lyon"
+apiKey = "xxxxxxxxxxxxxxxxxxxxx"
+station = 3008
+
+url = paste0(base_url, "stations/", station , "?", "contract=", contract,
+                  "&apiKey=", apiKey)
+resultat = GET(url)
+data = fromJSON(rawToChar(resultat$content))
+df = data.frame()
+df = rbind(df, unlist(data))
+```
+
+### Données de toutes les stations
+
+```{r, echo = TRUE, eval = FALSE}
+base_url = "https://api.jcdecaux.com/vls/v3/"
+contract = "Lyon"
+apiKey = "xxxxxxxxxxxxxxxxxxxxx"
+
+url = paste0(base_url, "stations?", "contract=", contract,
+                  "&apiKey=", apiKey)
+resultat = GET(url)
+data = fromJSON(rawToChar(resultat$content))
+df = do.call(rbind, data)
+```
+
+Vous avez ensuite un data frame. Attention, avant de le mettre dans une base de données il y aura peut-être des transormations à faire car des colonnes n'ont pas un format exploitables.
+
+
