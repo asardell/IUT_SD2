@@ -28,7 +28,7 @@ Sur la page <https://statisticsglobe.com/api-in-r#what-is-an-api>
 
 ## Librairies utilisées
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE}
 library(httr)
 library(jsonlite)
 library("rjson")
@@ -41,7 +41,7 @@ Il est possible d'utiliser deux url avec l'API :
 
 ### Données d'une seule station
 
-`GET https://api.jcdecaux.com/vls/v1/stations/{station_number}?contract={contract_name}&apiKey={api_key}`
+`GET https://api.jcdecaux.com/vls/v3/stations/{station_number}?contract={contract_name}&apiKey={api_key}`
 
 ```{r, echo = TRUE, eval = FALSE}
 base_url = "https://api.jcdecaux.com/vls/v3/"
@@ -72,5 +72,74 @@ df = do.call(rbind, data)
 ```
 
 Vous avez ensuite un data frame. Attention, avant de le mettre dans une base de données il y aura peut-être des transormations à faire car des colonnes n'ont pas un format exploitables.
+
+
+# Ecrire dans une base de données
+
+## Utilisation de freeSqlDataBase
+
+Pour cette démo, nous utilisons freesqldatabase <https://www.freesqldatabase.com/>
+
+- Créer un compte en sélectionnant l'offre gratuite dans l'Accueil.
+- Déterminer la location des serveurs
+- Créer une base de données
+- Attendre un second mail avec les informations de connexion et mot de passe
+- Vous pouvez vérifier visuellement la base de données sur l'interface *phpMyAdmin for database administration*
+- Vous pouvez maintenant utiliser R pour écrire dans une table et faire des requêtes en utilisant les informations du mail
+
+Attention :  Lorsque les bases de données ne sont plus utilisées, le site envoie un mail en vous demandant si vous souhaitez conserver vos ressources.
+
+## Tutoriel pour manipuler une base de données
+
+Pour intéragir avec la base de données, vous pouvez vous aider de ce tutoriel :
+
+<https://www.slideshare.net/RsquaredIn/rmysql-tutorial-for-beginners>
+
+### Librairies utilisées
+
+```{r, echo=TRUE, warning=FALSE}
+library("RMySQL")
+```
+
+### Création de la connexion
+
+```{r, eval = FALSE}
+con <- dbConnect(MySQL(),
+                 user = "xxx",
+                 password = "xxx",
+                 host = "xxx",
+                 dbname = "xxx",
+                 port = 3306)
+
+```
+
+### Test de la connexion
+
+```{r, eval = FALSE}
+summary(con)
+```
+
+```{r, eval=FALSE}
+dbGetInfo(con)
+```
+
+### Ecrire une table dans la base de données
+
+```{r, eval = FALSE}
+dbWriteTable(con, "iris", iris)
+```
+
+```{r}
+dbListTables(con)
+```
+
+### Requête sur la table créée.
+
+```{r}
+# Pass one set of values with the param argument:
+result = dbGetQuery(con, "select * from iris")
+head(result,5)
+```
+
 
 
