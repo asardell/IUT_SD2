@@ -16,7 +16,7 @@
 
 ## Objectifs
 
-Voici les objectifs de ce module :
+Voici les objectifs de ce chapitre :
 - [x] Rappel des bases du langage
 - [x] Manipuler des vecteurs
 - [x] Manipuler des dataframes
