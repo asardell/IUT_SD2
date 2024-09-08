@@ -38,13 +38,12 @@ Dans cette partie vous devez suivre ce [tutoriel](https://docs.github.com/fr/get
 7. Effectuer la commande `push` pour sauvegarder les changements de la branche sur le référentiel distant.
 8. Retourner sur **GitHub online** et effectuer une action de `pull request` puis `merge` de la branche `first-enedis-dev` sur la branche principale.
 9. En local sur GitHub Desktop, effectuer une action `fetch` pour se synchroniser avec le référentiel distant
-10. En local sur GitHub Desktop, changer de branche en sélectionnant la branche principal
+10. En local sur GitHub Desktop, changer de branche en sélectionnant la branche principale
 11. En local sur GitHub Desktop, effectuer une action `pull` pour mettre à jour votre référentiel local.
 
 ## Liens utiles
 
 Voici quelques liens utiles :
 
-- [Les bases de GitHub](https://docs.github.com/fr/get-started/start-your-journey/hello-world)
 - [Get Started - GitHub](https://docs.github.com/fr/get-started/start-your-journey/hello-world)
 - [Get started - GitHub Desktop](https://docs.github.com/fr/desktop/overview/getting-started-with-github-desktop)
