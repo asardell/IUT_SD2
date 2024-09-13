@@ -27,6 +27,7 @@ Voici quelques liens utiles :
 - [GitHub Cheat Sheet](https://training.github.com/downloads/fr/github-git-cheat-sheet.pdf)
 - [GitHub Get Started](https://docs.github.com/fr/get-started/quickstart/hello-world)
 - [GitHub Set up](https://docs.github.com/fr/get-started/quickstart/set-up-git)
+- [Cours de SD1](https://github.com/asardell/IUT_SD1)
 - [Cours sur la programmation R](https://asardell.github.io/programmation-r/)
 
 ## Tableau Récap
@@ -52,7 +53,7 @@ Voici quelques liens utiles :
 | `<` | Vérifie si une valeur est strictement inférieure à une autre. | `subset(dataframe, colonne3 < 5)` |
 | `<=` | Vérifie si une valeur est inférieure ou égale à une autre. | `subset(dataframe, colonne4 <= 100)` |
 | `&` | Opérateur logique ET, renvoie TRUE si les deux conditions sont remplies. | `subset(dataframe, colonne1 > 10 & colonne2 < 5)` |
-| `\|` | Opérateur logique OU, renvoie TRUE si au moins l'une des conditions est remplie. | `subset(dataframe, colonne3 == "oui"` | colonne4 != "non")` |
+| `\|` | Opérateur logique OU, renvoie TRUE si au moins l'une des conditions est remplie. | `subset(dataframe, colonne3 == "oui" \| colonne4 != "non")` |
 | `!=` | Vérifie si deux valeurs sont différentes. | `subset(dataframe, colonne5 != "invalide")` |
 | `==` | Vérifie si deux valeurs sont égales. | `subset(dataframe, colonne6 == "valide")` |
 | `%in%` | Vérifie si une valeur est présente dans un vecteur ou une liste. | `subset(dataframe, colonne7 %in% c("valeur1", "valeur2", "valeur3"))` |
