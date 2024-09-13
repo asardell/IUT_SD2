@@ -39,7 +39,7 @@ Les données ne seront pas représentatives de la France et ne peuvent donc pas 
 6. Fusionner les deux dataframes avec uniquement les colonnes communes. Plus d'info dans le [dictionnaire de données](https://data.ademe.fr/data-fair/api/v1/datasets/dpe-v2-logements-existants/metadata-attachments/DPE_Dictionnaire%20de%20donn%C3%A9es_JDD_V3.pdf).
 7. Créer une colonne avec uniquement l'année de la `Date de réception du DPE`
 8. Créer une colonne qui vérifie si `Coût_total_5_usages` correspond bien à la somme du `Coût_chauffage` + `Coût_éclairage` + `Coût_ECS` + `Coût_refroidissement` +  `Coût_auxiliaires`.
-9. Créer une colonne `Coût chaufage en %` qui est la part du coût du chauffage dans le coût total 5 usages.
+9. Créer une colonne `Coût chauffage en %` qui est la part du coût du chauffage dans le coût total 5 usages.
 10. Créer une colonne `Periode_construction` avec ces classes ci-dessous
 
 | Période Construction | 
