@@ -55,12 +55,12 @@ Les données ne seront pas représentatives de la France et ne peuvent donc pas 
 
 ## Statistiques générales
 
-1. Calculer le nombre de DPE par Etiquette DPE
-2. Calculer le nombre de DPE par année
-3. Calculer le nombre de DPE par type logement (ancien/neuf)
-4. Calculer la nombre de DPE par type de Bâtiment
-5. Calculer la nombre de DPE par type d'installation chauffage en pourcentage
-6. Calculer la nombre de DPE par période de construction
+1. Calculer la répartition des logements par `Etiquette_DPE`
+2. Calculer la répartition des logements par `Date_réception_DPE`
+3. Calculer la répartition des logements par type logement (ancien/neuf)
+4. Calculer la répartition des logements par par type de Bâtiment
+5. Calculer la répartition des logements par par type d'installation chauffage en pourcentage
+6. Calculer la répartition des logements par période de construction
 7. Calculer la surface habitable moyenne des logements
 8. Calculer la moyenne du coût_chauffage
 9. Calculer les quartiles puis déciles du Coût_ECS
