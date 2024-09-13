@@ -35,10 +35,23 @@ Les données ne seront pas représentatives de la France et ne peuvent donc pas 
 2. Importer les jeux de données
 3. Afficher la dimension des 2 datasets
 4. Créer une colonne nommée `Logement` dans les deux datasets avec la valeur `ancien` ou `neuf` selon la source.
-5. Fusionner les deux dataframes avec uniquement les colonnes communes. Plus d'info dans le [dictionnaire de données](https://data.ademe.fr/data-fair/api/v1/datasets/dpe-v2-logements-existants/metadata-attachments/DPE_Dictionnaire%20de%20donn%C3%A9es_JDD_V3.pdf).
-6. Créer une colonne avec uniquement l'année de la `Date de réception du DPE`
-7. Créer une colonne qui vérifie si `Coût_total_5_usages` correspond bien à la somme du `Coût_chauffage` + `Coût_éclairage` + `Coût_ECS` + `Coût_refroidissement` +  `Coût_auxiliaires`.
-8. Créer une colonne `Coût chaufage en %` qui est la part du coût du chauffage dans le coût total 5 usages.
+5. La variable `Année_construction` n'apparaît pas dans les données des logements neufs. Créer cette colonne avec la valeur de l'année en cour.
+6. Fusionner les deux dataframes avec uniquement les colonnes communes. Plus d'info dans le [dictionnaire de données](https://data.ademe.fr/data-fair/api/v1/datasets/dpe-v2-logements-existants/metadata-attachments/DPE_Dictionnaire%20de%20donn%C3%A9es_JDD_V3.pdf).
+7. Créer une colonne avec uniquement l'année de la `Date de réception du DPE`
+8. Créer une colonne qui vérifie si `Coût_total_5_usages` correspond bien à la somme du `Coût_chauffage` + `Coût_éclairage` + `Coût_ECS` + `Coût_refroidissement` +  `Coût_auxiliaires`.
+9. Créer une colonne `Coût chaufage en %` qui est la part du coût du chauffage dans le coût total 5 usages.
+10. Créer une colonne `Periode_construction` avec ces classes ci-dessous
+
+| Période Construction | 
+|------------------|
+| Avant 1960 | 
+| 1961 -  1970 |
+| 1971 -  1980 |
+| 1981 -  1990 |
+| 1991 -  2000 |
+| 2001 -  2010 |
+| Après 2010 |
+
 
 ## Statistiques générales
 
