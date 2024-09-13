@@ -35,7 +35,7 @@ Les données ne seront pas représentatives de la France et ne peuvent donc pas 
 2. Importer les jeux de données
 3. Afficher la dimension des 2 datasets
 4. Créer une colonne nommée `Logement` dans les deux datasets avec la valeur `ancien` ou `neuf` selon la source.
-5. La variable `Année_construction` n'apparaît pas dans les données des logements neufs. Créer cette colonne avec la valeur de l'année en cour.
+5. La variable `Année_construction` n'apparaît pas dans les données des logements neufs. Créer cette colonne avec la valeur de l'année en cours.
 6. Fusionner les deux dataframes avec uniquement les colonnes communes. Plus d'info dans le [dictionnaire de données](https://data.ademe.fr/data-fair/api/v1/datasets/dpe-v2-logements-existants/metadata-attachments/DPE_Dictionnaire%20de%20donn%C3%A9es_JDD_V3.pdf).
 7. Créer une colonne avec uniquement l'année de la `Date de réception du DPE`
 8. Créer une colonne qui vérifie si `Coût_total_5_usages` correspond bien à la somme du `Coût_chauffage` + `Coût_éclairage` + `Coût_ECS` + `Coût_refroidissement` +  `Coût_auxiliaires`.
@@ -86,7 +86,7 @@ Pour cet exercice suivre [ce cours](https://asardell.github.io/programmation-r/d
 
 1. Créer un dataframe avec uniquement les logements dont le type de batîment est un appartement
 2. Créer un dataframe avec uniquement les logements dont l'étiquette DPE est D,E,F,G
-3. Créer un dataframe avec les logements anciens dont la période de construction est *avant 1948*
+3. Créer un dataframe avec les logements anciens dont la période de construction est *avant 1960*
 4. Créer un dataframe avec les logements qui ont une surface habitable strictement supérieure à la surface habitable moyenne
 5. Créer un dataframe en triant les logements qui consomme le plus d'énergie 5 usages en m² (`Conso_5_usages.m._é_finale`)à ceux qui consomme le moins
 6. Créer un dataframe en triant par étiquette DPE, puis période de construction, puis par coût en chauffage décroissant.
