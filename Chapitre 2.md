@@ -49,7 +49,7 @@ Voici les objectifs de ce module :
 8. Effectuer une requête `GET` en récupérant les données de la page 1 avec 5 résultats et en sélectionnant  les colonnes `N°DPE`,  `Etiquette_DPE` et `Date_réception_DPE` et en filtrant par  `Date_réception_DPE` entre le *2024-01-01* au *2024-01-31*
 9. Effectuer une requête `GET` en récupérant les données de la page 1 avec 5 résultats et en sélectionnant  les colonnes `N°DPE`,  `Etiquette_DPE` et `Date_réception_DPE` et en filtrant par  `Date_réception_DPE` après le *2024-07-31*
 10. Effectuer une requête `GET` en récupérant les données de la page 1 avec 5 résultats et en sélectionnant  les colonnes `N°DPE`,  `Etiquette_DPE`, `Date_réception_DPE` et `Code_postal_(BAN)` en filtrant par le `Code_postal_(BAN)` *69360*. Combien y a t-il de logements concernés dans la base de données ?
-:warning: Pour une raison inexpliquée, il est recommandé d'utiliser le paramètre `q` de l'API pour ce filtre.
+:warning: Pour une raison inexpliquée, il est recommandé d'utiliser le paramètre `q` et `q_fields` de l'API pour ce filtre.
 11. Pour ce même code postal, effectuer une requête `GET` en récupérant les données de la page 2 avec 3000 résultats par page et en sélectionnant  les colonnes `N°DPE`,  `Etiquette_DPE`, `Date_réception_DPE` et `Code_postal_(BAN)`. Comment expliquer que le résultat retourne zéro ligne ? 
 
 
@@ -72,8 +72,9 @@ params <- list(
   page = 1,
   size = 5,
   select = "N°DPE,Code_postal_(BAN),Etiquette_DPE,Date_réception_DPE",
-  q = "",
-  qs = ""
+  q = "69008",
+  q_fields = "Code_postal_(BAN)",
+  qs = "Date_réception_DPE:[2023-06-29 TO 2023-08-30]"
 ) 
 
 # Encodage des paramètres
