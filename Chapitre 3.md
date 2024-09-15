@@ -1,6 +1,6 @@
-# Chapitre 2 : Initiation à Git avec GitHub Desktop
+# Chapitre 3 : Initiation à Git avec GitHub Desktop
 
-- [Chapitre 2 : Initiation à Git avec GitHub Desktop](#chapitre-2--initiation-à-git-avec-github-desktop)
+- [Chapitre 3 : Initiation à Git avec GitHub Desktop](#chapitre-3--initiation-à-git-avec-github-desktop)
   - [Objectifs](#objectifs)
   - [Découvrir GitHub](#découvrir-github)
   - [Découvrir GitHub Desktop](#découvrir-github-desktop)

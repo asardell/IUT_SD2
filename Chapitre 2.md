@@ -1,4 +1,4 @@
-# Chapitre 3 : Utiliser une API pour extraire des données
+# Chapitre 2 : Utiliser une API pour extraire des données
 
 ## Objectifs
 
