@@ -113,7 +113,7 @@ View(df)
 1. Récupérer tous les codes postaux du département du Rhône(69) à l'aide du fichier `adresses-69.csv`
 2. Avec une boucle, parcourir chaque code postal afin de reconstruire le dataframe complet des logements existants sur le département. Exporter le résultat dans un fichier appelé `existants_69.csv`
 
-:warning: S'il y a plus de 10000 logements pour un code postaux, il est conseillé d'ajouter un filtre supplémentaire pour parcourir les `Date_réception_DPE` de chaque année depuis 2021.
+:warning: S'il y a plus de 10000 logements pour un code postal, il est conseillé d'ajouter un filtre supplémentaire pour parcourir les `Date_réception_DPE` de chaque année depuis 2021.
 
 3. Même question pour les logements neufs. Exporter le résultat dans un fichier appelé `neufs_69.csv`
 4. Fusionner les deux dataframes avec uniquement les colonnes communes.
