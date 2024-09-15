@@ -14,8 +14,8 @@ Voici les objectifs de ce module :
 ## Planning
 
 1. Chapitre 1 : Rappel du langage R
-2. Chapitre 2 : Initiation à Git avec GitHub Desktop
-3. Chapitre 3 : Utiliser une API pour extraire des données (en cours de rédaction)
+2. Chapitre 2 : Utiliser une API pour extraire des données
+3. Chapitre 3 : Initiation à Git avec GitHub Desktop
 4. Chapitre 4 : [Initiation au R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
 5. Chapitre 5 : [Initiation au R Shiny](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html)
 
