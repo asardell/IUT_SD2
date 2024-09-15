@@ -49,7 +49,9 @@ Voici les objectifs de ce module :
 8. Effectuer une requête `GET` en récupérant les données de la page 1 avec 5 résultats et en sélectionnant  les colonnes `N°DPE`,  `Etiquette_DPE` et `Date_réception_DPE` et en filtrant par  `Date_réception_DPE` entre le *2024-01-01* au *2024-01-31*
 9. Effectuer une requête `GET` en récupérant les données de la page 1 avec 5 résultats et en sélectionnant  les colonnes `N°DPE`,  `Etiquette_DPE` et `Date_réception_DPE` et en filtrant par  `Date_réception_DPE` après le *2024-07-31*
 10. Effectuer une requête `GET` en récupérant les données de la page 1 avec 5 résultats et en sélectionnant  les colonnes `N°DPE`,  `Etiquette_DPE`, `Date_réception_DPE` et `Code_postal_(BAN)` en filtrant par le `Code_postal_(BAN)` *69360*. Combien y a t-il de logements concernés dans la base de données ?
+
 :warning: Pour une raison inexpliquée, il est recommandé d'utiliser le paramètre `q` et `q_fields` de l'API pour ce filtre.
+
 11. Pour ce même code postal, effectuer une requête `GET` en récupérant les données de la page 2 avec 3000 résultats par page et en sélectionnant  les colonnes `N°DPE`,  `Etiquette_DPE`, `Date_réception_DPE` et `Code_postal_(BAN)`. Comment expliquer que le résultat retourne zéro ligne ? 
 
 
@@ -110,6 +112,7 @@ View(df)
 
 1. Récupérer tous les codes postaux du département du Rhône(69) à l'aide du fichier `adresses-69.csv`
 2. Avec une boucle, parcourir chaque code postal afin de reconstruire le dataframe complet des logements existants sur le département. Exporter le résultat dans un fichier appelé `existants_69.csv`
+
 :warning: S'il y a plus de 10000 logements pour un code postaux, il est conseillé d'ajouter un filtre supplémentaire pour parcourir les `Date_réception_DPE` de chaque année depuis 2021.
 
 3. Même question pour les logements neufs. Exporter le résultat dans un fichier appelé `neufs_69.csv`
