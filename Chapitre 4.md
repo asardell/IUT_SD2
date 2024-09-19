@@ -1,5 +1,11 @@
 # Chapitre 4 : Initiation au R Markdown
 
+- [Chapitre 4 : Initiation au R Markdown](#chapitre-4--initiation-au-r-markdown)
+  - [Objectifs](#objectifs)
+  - [Pratique](#pratique)
+  - [Liens utiles](#liens-utiles)
+
+
 ## Objectifs
 
 Voici les objectifs de ce module :
@@ -9,6 +15,7 @@ Voici les objectifs de ce module :
 - [x] Utiliser des variables
 - [x] Utiliser des paramètres
 
+## Pratique
 
 1. En-tête de métadonnées (YAML)
 
@@ -27,6 +34,7 @@ output: word_document
 # Ceci est un chunk de code R
 summary(iris)
 ```
+````
 
 3. Ajouter des titres
    
@@ -57,12 +65,14 @@ La taille moyenne des pétales est ``r mean(iris$Petal.Length)\``.
 ```{r, eval=FALSE}
 install.packages("knitr")
 ```
+````
 
 8. Option par défaut des chunks
 ````markdown
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+````
 
 9. Créer des tableaux élégants avec `kable`
 
@@ -71,6 +81,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 kable(head(iris), caption = "Tableau des premières lignes du jeu de données iris")
 ```
+````
 
 10. Utilisation de variables R dans les chunks
 
@@ -78,6 +89,7 @@ kable(head(iris), caption = "Tableau des premières lignes du jeu de données ir
 ```{r}
 mean_petal_length <- mean(iris$Petal.Length)
 ```
+````
 
 La longueur moyenne des pétales est : \`r mean_petal_length\`.
 
@@ -111,6 +123,14 @@ ggplot(iris, aes(x = Species, y = get(param))) +
   geom_boxplot() +
   labs(y = param, title = paste("Boxplot de", param, "par Species"))
 ```
+````
+
+<details>
+<summary>Vous avez terminé !</summary>
+
+<img src="./img/congratulation.gif" alt="" style="height: 300px;">
+
+</details>
 
 ## Liens utiles
 
