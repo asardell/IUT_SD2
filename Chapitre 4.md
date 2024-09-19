@@ -22,6 +22,7 @@ output: word_document
 
 2. Syntaxe de base pour les chunks de code R
 
+````markdown
 ```{r}
 # Ceci est un chunk de code R
 summary(iris)
@@ -52,26 +53,35 @@ La taille moyenne des pétales est ``r mean(iris$Petal.Length)\``.
 - **`warning`** : Affiche ou non les warnings.
 - **`message`** : Affiche ou non les messages.
 
+````markdown
 ```{r, eval=FALSE}
 install.packages("knitr")
 ```
 
-7. Créer des tableaux élégants avec `kable`
+8. Option par défaut des chunks
+````markdown
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
+9. Créer des tableaux élégants avec `kable`
+
+````markdown
 ```{r, echo=FALSE}
 library(knitr)
 kable(head(iris), caption = "Tableau des premières lignes du jeu de données iris")
 ```
 
-8. Utilisation de variables R dans les chunks
+10. Utilisation de variables R dans les chunks
 
+````markdown
 ```{r}
 mean_petal_length <- mean(iris$Petal.Length)
 ```
 
-La longueur moyenne des pétales est : ``r mean_petal_length``.
+La longueur moyenne des pétales est : \`r mean_petal_length\`.
 
-9. Paramètres en en-tête de métadonnées (YAML)
+11. Paramètres en en-tête de métadonnées (YAML)
 
 ```yaml
 ---
@@ -86,7 +96,10 @@ params:
 
 :bulb: La fonction `get(param)` permet d'accéder dynamiquement à la colonne du jeu de données iris correspondant au paramètre passé.
 
-```{r}
+````markdown
+La colonne sélectionnée est \`\`params$mon_parametre\`\`
+
+```{r warning = FALSE, echo  = FALSE}
 # Chargement du jeu de données iris et de ggplot2
 library(ggplot2)
 
