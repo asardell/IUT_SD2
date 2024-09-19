@@ -106,7 +106,7 @@ params:
 ---
 ```
 
-:bulb: La fonction `get(param)` permet d'accéder dynamiquement à la colonne du jeu de données iris correspondant au paramètre passé.
+:bulb: La fonction `get(params)` permet d'accéder dynamiquement à la colonne du jeu de données iris correspondant au paramètre passé.
 
 ````markdown
 ```{r warning = FALSE, echo  = FALSE}
