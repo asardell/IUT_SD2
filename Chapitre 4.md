@@ -109,8 +109,6 @@ params:
 :bulb: La fonction `get(param)` permet d'accéder dynamiquement à la colonne du jeu de données iris correspondant au paramètre passé.
 
 ````markdown
-La colonne sélectionnée est \`\`params$mon_parametre\`\`
-
 ```{r warning = FALSE, echo  = FALSE}
 # Chargement du jeu de données iris et de ggplot2
 library(ggplot2)
@@ -125,8 +123,12 @@ ggplot(iris, aes(x = Species, y = get(param))) +
 ```
 ````
 
+12. Utiliser la valeur d'un paramètre dans du texte
+    
+La colonne sélectionnée est \`\`r params$mon_parametre\`\`
+
 <details>
-<summary>Vous avez terminé !</summary>
+<summary>Vous avez terminé ?</summary>
 
 <img src="./img/congratulation.gif" alt="" style="height: 300px;">
 
