@@ -50,11 +50,7 @@ summary(iris)
 **Texte en gras**
 ```
 
-5. Insérer des variables R dans des commentaires de texte
-
-La taille moyenne des pétales est ``r mean(iris$Petal.Length)\``.
-
-6. Options principales des chunks de code
+5. Options principales des chunks de code
 
 - **`echo`** : Affiche ou non le code.
 - **`eval`** : Exécute ou non le code.
@@ -67,14 +63,14 @@ install.packages("knitr")
 ```
 ````
 
-8. Option par défaut des chunks
+6. Option par défaut des chunks
 ````markdown
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ````
 
-9. Créer des tableaux élégants avec `kable`
+7. Créer des tableaux élégants avec `kable`
 
 ````markdown
 ```{r, echo=FALSE}
@@ -83,7 +79,7 @@ kable(head(iris), caption = "Tableau des premières lignes du jeu de données ir
 ```
 ````
 
-10. Utilisation de variables R dans les chunks
+8. Utilisation de variables R dans les chunks
 
 ````markdown
 ```{r}
@@ -93,7 +89,7 @@ mean_petal_length <- mean(iris$Petal.Length)
 
 La longueur moyenne des pétales est : \`r mean_petal_length\`.
 
-11. Paramètres en en-tête de métadonnées (YAML)
+9. Paramètres en en-tête de métadonnées (YAML)
 
 ```yaml
 ---
@@ -123,7 +119,7 @@ ggplot(iris, aes(x = Species, y = get(param))) +
 ```
 ````
 
-12. Utiliser la valeur d'un paramètre dans du texte
+10. Utiliser la valeur d'un paramètre dans du texte
     
 La colonne sélectionnée est \`\`r params$mon_parametre\`\`
 
