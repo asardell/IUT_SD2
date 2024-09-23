@@ -52,6 +52,86 @@ Les données ne seront pas représentatives de la France et ne peuvent donc pas 
 | 2001 -  2010 |
 | Après 2010 |
 
+```r
+# Importer les jeux de données
+df_existants = read.csv(file = "dpe-v2-logements-existants.csv",
+                        header=  TRUE,
+                        dec = ".",
+                        sep = ",")
+
+
+df_neufs = read.csv(file = "dpe-v2-logements-neufs.csv",
+                        header=  TRUE,
+                        dec = ".",
+                        sep = ",")
+
+# Afficher la dimension des 2 datasets
+dim(df_neufs)
+dim(df_existants)
+
+# Créer une colonne nommée Logement dans les deux datasets avec la valeur ancien ou neuf selon la source.
+df_neufs$Logement = "Neuf"
+df_existants$Logement = "Ancien"
+
+# La variable Année_construction n'apparaît pas dans les données des logements neufs. Créer cette colonne avec la valeur de l'année en cours.
+
+df_neufs$Année_construction = Sys.Date()
+class(df_neufs$Année_construction)
+df_neufs$Année_construction = format(df_neufs$Année_construction, "%Y")
+class(df_neufs$Année_construction)
+df_neufs$Année_construction = as.numeric(df_neufs$Année_construction)
+
+# Fusionner les deux dataframes avec uniquement les colonnes communes. Plus d'info dans le dictionnaire de données.
+
+colnames_neuf = colnames(df_neufs)
+colnames_existant = colnames(df_existants)
+colonnes_communes = intersect(colnames_neuf,colnames_existant)
+df = rbind(df_neufs[ ,colonnes_communes] ,
+           df_existants[ ,colonnes_communes])
+dim(df) #verif
+table(df$Logement) #verif
+
+# Créer une colonne avec uniquement l'année de la Date de réception du DPE
+class(df$Date_réception_DPE)
+df$Date_réception_DPE = as.Date(df$Date_réception_DPE)
+class(df$Date_réception_DPE)
+df$Date_réception_DPE_YYYY = format(df$Date_réception_DPE_YYYY, "%Y")
+class(df$Date_réception_DPE_YYYY)
+df$Date_réception_DPE_YYYY = as.numeric(df$Date_réception_DPE_YYYY)
+
+# Créer une colonne qui vérifie si Coût_total_5_usages correspond
+bien à la somme du Coût_chauffage + Coût_éclairage + Coût_ECS + 
+  Coût_refroidissement + Coût_auxiliaires.
+
+df$Somme_Coût_total_5_usages = df$Coût_chauffage + 
+  df$Coût_éclairage + df$Coût_ECS +
+  df$Coût_refroidissement + df$Coût_auxiliaires
+
+df$Ecart_Coût_total_5_usages = df$Coût_total_5_usages - df$Somme_Coût_total_5_usages
+
+df$Verif_Coût_total_5_usages = ifelse(df$Ecart_Coût_total_5_usages > 0,
+                                      yes = "ERREUR", no = "OK")
+
+table(df$Verif_Coût_total_5_usages)
+
+# Créer une colonne Coût chauffage en % qui est la part du coût du chauffage dans le coût total 5 usages.
+df$Part_Coût_chauffage = df$Coût_chauffage / df$Coût_total_5_usages
+df$Part_Coût_chauffage = round(df$Part_Coût_chauffage, 2)
+summary(df$Part_Coût_chauffage )
+
+# Créer une colonne Periode_construction avec ces classes ci-dessous
+df$Periode_construction = cut(df$Année_construction,
+                              breaks = c(0,1960,1970,1980,1990,2000,2010,2050),
+                              labels = c("Avant 1960",
+                                         "1961 - 1970",
+                                         "1971 - 1980",
+                                         "1981 - 1990",
+                                         "1991 - 2000",
+                                         "2001 - 2010",
+                                         "Après 2010"))
+
+table(df$Periode_construction)
+```
 
 ## Statistiques générales
 
