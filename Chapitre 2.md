@@ -127,6 +127,6 @@ Voici quelques liens utiles :
 - [Défintion d'une API selon api.gouv.fr](https://api.gouv.fr/guides/api-definition)
 - [HTTP methodes](https://blog.postman.com/what-are-http-methods/)
 - [API avec R](https://statisticsglobe.com/api-in-r#what-is-an-api)
-- [API des logements neufs](https://data.ademe.fr/datasets/dpe-v2-logements-neufs/api-doc)
-- [API des logements existants](https://data.ademe.fr/datasets/dpe-v2-logements-existants/api-doc)
+- [API des logements neufs](https://data.ademe.fr/datasets/dpe02neuf/api-doc?operation=readLines)
+- [API des logements existants](https://data.ademe.fr/datasets/dpe03existant/api-doc?operation=readLines)
 - [API - GET query with range parameters from ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#_ranges)
