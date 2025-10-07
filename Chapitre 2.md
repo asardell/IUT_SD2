@@ -73,8 +73,8 @@ base_url <- "https://data.ademe.fr/data-fair/api/v1/datasets/dpe03existant/lines
 params <- list(
   page = 1,
   size = 5,
-  select = "numero_dpe, code_postal_ban, etiquette_dpe, date_reception_dpe",
-  qs = 'code_postal_ban:"69008" AND Date_réception_DPE:[2023-06-29 TO 2023-08-30]'
+  select = "numero_dpe,code_postal_ban,etiquette_dpe,date_reception_dpe",
+  qs = 'code_postal_ban:"69008" AND date_reception_dpe:[2023-06-29 TO 2023-08-30]'
 ) 
 
 # Encodage des paramètres
