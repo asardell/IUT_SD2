@@ -39,7 +39,7 @@ Voici les objectifs de ce module :
 
 ## Utiliser l'API de l'ADEME sur leur site internet
 
-1. Aller sur l'[API des logements existants de l'ADEME](https://data.ademe.fr/datasets/dpe-v2-logements-existants/api-doc)
+1. Aller sur l'[API des logements existants de l'ADEME](https://data.ademe.fr/datasets/dpe03existant/api-doc?operation=readLines)
 2. Dans données, cliquer sur la méthode `GET /lines`
 3. Effectuer une première requête `GET` en récupérant les données de la première page. Observer la réponse de la requête.
 4. Effectuer une requête `GET` en récupérant les données de la page 1 avec 5 résultats
