@@ -68,15 +68,13 @@ install.packages(c("httr", "jsonlite"))
 library(httr)
 library(jsonlite)
 
-base_url <- "https://data.ademe.fr/data-fair/api/v1/datasets/dpe-v2-logements-existants/lines"
+base_url <- "https://data.ademe.fr/data-fair/api/v1/datasets/dpe03existant/lines"
 # Paramètres de la requête
 params <- list(
   page = 1,
   size = 5,
-  select = "N°DPE,Code_postal_(BAN),Etiquette_DPE,Date_réception_DPE",
-  q = "69008",
-  q_fields = "Code_postal_(BAN)",
-  qs = "Date_réception_DPE:[2023-06-29 TO 2023-08-30]"
+  select = "numero_dpe, code_postal_ban, etiquette_dpe, date_reception_dpe",
+  qs = 'code_postal_ban:"69008" AND Date_réception_DPE:[2023-06-29 TO 2023-08-30]'
 ) 
 
 # Encodage des paramètres
