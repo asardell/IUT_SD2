@@ -7,13 +7,16 @@
     - [Structure d’une application Shiny (`app.R` ou `ui.R` + `server.R`)](#structure-dune-application-shiny-appr-ou-uir--serverr)
       - [Fichier unique : `app.R`](#fichier-unique--appr)
       - [Fichiers séparés : `ui.R` et `server.R`](#fichiers-séparés--uir-et-serverr)
+  - [Les objets réactifs dans Shiny](#les-objets-réactifs-dans-shiny)
+    - [Ajouter un objet réactif dans l’UI](#ajouter-un-objet-réactif-dans-lui)
+    - [Définir la logique réactive dans le serveur](#définir-la-logique-réactive-dans-le-serveur)
   - [Gérer les différents layouts Shiny](#gérer-les-différents-layouts-shiny)
     - [`fluidPage()`](#fluidpage)
     - [`sidebarLayout()`](#sidebarlayout)
     - [`splitLayout()`](#splitlayout)
     - [`navbarPage()` et `tabPanel()`](#navbarpage-et-tabpanel)
     - [`fluidRow()` et `column()`](#fluidrow-et-column)
-  - [Récapitulatif des widgets Shiny](#récapitulatif-des-widgets-shiny)
+  - [Les widgets Shiny](#les-widgets-shiny)
     - [Boutons](#boutons)
     - [Checkbox unique](#checkbox-unique)
     - [Checkbox group](#checkbox-group)
@@ -34,6 +37,15 @@
   - [Ajouter des images dans Shiny](#ajouter-des-images-dans-shiny)
     - [Images dans le projet Shiny](#images-dans-le-projet-shiny)
     - [Images depuis une URL web](#images-depuis-une-url-web)
+  - [Créer des graphiques interactifs avec esquisse et plotly](#créer-des-graphiques-interactifs-avec-esquisse-et-plotly)
+    - [Esquisse : créer le graphique hors Shiny](#esquisse--créer-le-graphique-hors-shiny)
+    - [Plotly : rendre le graphique interactif dans Shiny](#plotly--rendre-le-graphique-interactif-dans-shiny)
+  - [Déployer une application sur shinyapps.io](#déployer-une-application-sur-shinyappsio)
+    - [Prérequis](#prérequis)
+    - [Se connecter depuis R](#se-connecter-depuis-r)
+    - [Déployer l’application](#déployer-lapplication)
+    - [Limitations de la version gratuite](#limitations-de-la-version-gratuite)
+    - [Bonnes pratiques](#bonnes-pratiques)
   - [Aller plus loin](#aller-plus-loin)
   - [Liens utiles](#liens-utiles)
 
@@ -42,9 +54,9 @@
 
 Voici les objectifs de ce module :
 - [x] Créer un projet Shiny et comprendre sa structure (app.R / ui.R + server.R)  
-- [x] Utiliser et organiser les layouts Shiny (fluidPage, sidebarLayout, splitLayout, navbarPage, fluidRow)  
-- [x] Ajouter et configurer des widgets interactifs (inputs : slider, select, checkbox, radio, text…)  
-- [x] Afficher des graphiques et tableaux interactifs (renderPlot, tableOutput, DT::datatable)  
+- [x] Utiliser et organiser les layouts Shiny
+- [x] Ajouter et configurer des widgets interactifs
+- [x] Afficher des graphiques et tableaux interactifs
 - [x] Intégrer des images locales et web en utilisant des chemins relatifs  
 - [x] Utiliser package::fonction pour un code clair et reproductible
 
@@ -83,6 +95,80 @@ Une application Shiny peut être structurée de deux façons :
 - RStudio combine automatiquement les deux fichiers pour exécuter l’application.
 
 :bulb: Dans les deux cas, la structure reste la même : **interface + logique serveur**.
+
+## Les objets réactifs dans Shiny
+
+Dans Shiny, un **objet réactif** est un élément de sortie qui se met à jour automatiquement lorsque ses **données ou widgets associés changent**.  
+La création d’un objet réactif se fait en **deux étapes** : ajouter l’objet dans l’UI, puis définir sa logique dans le serveur.
+
+### Ajouter un objet réactif dans l’UI
+
+Shiny propose des fonctions `*Output` pour afficher différents types d’objets :
+
+| Output function | Crée |
+|-----------------|------|
+| dataTableOutput  | DataTable |
+| htmlOutput       | HTML brut |
+| imageOutput      | image |
+| plotOutput       | graphique |
+| tableOutput      | tableau |
+| textOutput       | texte |
+| uiOutput         | HTML ou tag Shiny |
+| verbatimTextOutput | texte formaté |
+
+```r
+ui <- fluidPage(
+  titlePanel("Histogramme réactif"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("bins", "Nombre de bins :", min = 1, max = 50, value = 30)
+    ),
+    mainPanel(
+      plotOutput("distPlot")
+    )
+  )
+)
+```
+
+:bulb:
+- Chaque fonction `*Output` prend un **argument : un nom de caractère** qui identifie l’objet réactif.  
+- Les utilisateurs ne voient pas ce nom, il est utilisé pour référencer l’objet dans le serveur.
+
+### Définir la logique réactive dans le serveur
+
+Chaque objet réactif est construit dans la fonction `server` via `output$nom_objet <- render*({ ... })`.  
+Le nom doit correspondre au nom donné dans l’UI.
+
+```r
+server <- function(input, output) {
+  output$distPlot <- renderPlot({
+    x <- faithful$waiting   # Utilisation du dataset intégrée faithful
+    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    hist(x, breaks = bins, col = "darkgray", border = "white",
+         main = "Histogramme de temps d’attente des geysers",
+         xlab = "Temps d’attente (minutes)")
+  })
+}
+shinyApp(ui = ui, server = server)
+```
+
+:bulb:
+- Les fonctions `render*` correspondent au type d’objet :  
+
+| Render function | Crée |
+|-----------------|------|
+| renderDataTable  | DataTable |
+| renderImage      | image (depuis un fichier ou URL) |
+| renderPlot       | graphique |
+| renderPrint      | tout objet imprimé |
+| renderTable      | data frame, matrice ou tableau |
+| renderText       | chaîne de caractères |
+| renderUI         | tag Shiny ou HTML |
+
+- L’expression passée à `render*` est évaluée **lors du lancement de l’application** et **à chaque mise à jour** des widgets associés.  
+- L’expression doit **retourner un objet du bon type** sinon Shiny générera une erreur.
+- Pensez à **toujours faire correspondre le nom de `output$...` dans le serveur** avec celui de `*Output` dans l’UI.  
+- Les objets réactifs permettent de créer des **applications dynamiques** où le contenu s’adapte automatiquement aux interactions de l’utilisateur.
 
 ## Gérer les différents layouts Shiny
 
@@ -201,8 +287,7 @@ server <- function(input, output) {
 - `fluidPage()` est le conteneur principal
 - Les autres layouts (`sidebarLayout`, `splitLayout`, `navbarPage`, `fluidRow`) s’imbriquent à l’intérieur pour organiser l’interface selon le besoin
 
-
-## Récapitulatif des widgets Shiny
+## Les widgets Shiny
 
 Shiny propose de nombreux **widgets interactifs** pour construire des interfaces utilisateur.  
 
@@ -548,13 +633,134 @@ ui <- fluidPage(
 - Cette méthode ne nécessite pas de copier l’image dans le projet.
 
 
+## Créer des graphiques interactifs avec esquisse et plotly
+
+Pour intégrer des graphiques interactifs dans Shiny, il est pratique de **séparer la création du graphique et l’interactivité** :
+
+1. **Esquisse** pour créer rapidement un graphique et récupérer le code `ggplot2`.  
+2. **Plotly** pour transformer ce graphique en graphique interactif dans Shiny.
+
+### Esquisse : créer le graphique hors Shiny
+
+- Installer le package si nécessaire :
+
+```r
+install.packages("esquisse")
+```
+
+```r
+library(esquisse)
+library(ggplot2)
+# Lancer l’interface esquisse
+esquisser(iris)
+```
+
+:bulb:  
+- Esquisse ouvre une **interface graphique** où vous pouvez **glisser-déposer les variables**, choisir le type de graphique et visualiser le résultat.  
+- Une fois satisfait, **copier le code `ggplot2` généré** pour l’intégrer dans votre application Shiny.
+
+```r
+p <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
+  theme_minimal()
+```
+
+### Plotly : rendre le graphique interactif dans Shiny
+
+```r
+install.packages("plotly")
+```
+
+```r
+library(shiny)
+library(plotly)
+library(ggplot2)
+
+ui <- fluidPage(
+  titlePanel("Graphique interactif avec plotly"),
+  plotlyOutput("plot1")
+)
+
+server <- function(input, output) {
+  output$plot1 <- renderPlotly({
+    # Code ggplot2 récupéré depuis esquisse
+    p <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+      geom_point() +
+      theme_minimal()
+    ggplotly(p)   # transforme le ggplot en graphique interactif
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+:bulb:
+
+- Esquisse sert **uniquement à prototyper et générer le code ggplot2**, vous n’avez pas besoin de l’utiliser dans Shiny.  
+- `ggplotly()` ajoute automatiquement **zoom, hover et légende interactive**.  
+- Vous pouvez combiner ce graphique avec **des widgets Shiny** pour le rendre dynamique (filtrage, sélection, etc.).
+
+## Déployer une application sur shinyapps.io
+
+ShinyApps.io est le service officiel de RStudio pour **héberger et partager vos applications Shiny en ligne**.  
+Il permet de rendre vos applications accessibles via un simple navigateur, sans que l’utilisateur ait besoin d’installer R ou Shiny.
+
+### Prérequis
+
+- Installer le package `rsconnect` :
+  
+```r
+install.packages("rsconnect")
+```
+
+- Créer un compte sur [https://www.shinyapps.io](https://www.shinyapps.io)
+- Récupérer vos **identifiants (token et secret)** dans le tableau de bord ShinyApps.io
+
+### Se connecter depuis R
+
+library(rsconnect)
+
+rsconnect::setAccountInfo(name='votre_nom',
+                          token='votre_token',
+                          secret='votre_secret')
+
+:bulb: Une seule fois suffit, ensuite R se souviendra de vos informations pour vos déploiements futurs.
+
+### Déployer l’application
+
+- Placer **tous les fichiers nécessaires** dans le même dossier :  
+  - `app.R` ou `ui.R + server.R`  
+  - Dossier `www` pour les images, CSS, etc.  
+  - Fichiers de données utilisés  
+
+- Déployer avec :
+
+```r
+rsconnect::deployApp("chemin/vers/votre/app")
+```
+
+- Une URL publique sera générée, par exemple :  
+  `https://votre_nom.shinyapps.io/monapp`
+
+### Limitations de la version gratuite
+
+- **Nombre d’applications actives limité** : 5 applications maximum
+- **Nombre de connexions simultanées limité** : ~25 connexions simultanées par application
+- **Temps d’inactivité** : les applications passent en veille après 15 minutes sans activité
+- **Stockage limité** : taille totale du compte limitée
+- **Ressources limitées** : CPU et mémoire réduites comparé à un serveur payant
+
+### Bonnes pratiques
+
+- Toujours tester localement l’application avant le déploiement
+- Utiliser **des chemins relatifs** pour les fichiers et images
+- Eviter les données trop volumineuses : mieux vaut charger les données depuis un fichier en ligne ou une base de données
+- Documenter votre code et les packages nécessaires pour faciliter la maintenance
+
+
 ## Aller plus loin
 
-- esquisse
-- plotly
-  
 Pour aller plus loin, vous pouvez consulter les liens utiles ci-dessous : 
-
 
 ## Liens utiles
 
