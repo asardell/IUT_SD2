@@ -6,6 +6,9 @@
   - [Créer un fichier R Markdown dans RStudio](#créer-un-fichier-r-markdown-dans-rstudio)
     - [Étapes simples](#étapes-simples)
     - [Structure du document](#structure-du-document)
+  - [Ne pas confondre un script R et un fichier R Markdown](#ne-pas-confondre-un-script-r-et-un-fichier-r-markdown)
+    - [Le script R `.R`](#le-script-r-r)
+    - [Le script R Markdown `.Rmd`](#le-script-r-markdown-rmd)
   - [Librairies à installer](#librairies-à-installer)
   - [Conseils pratiques avant de se lancer](#conseils-pratiques-avant-de-se-lancer)
   - [Tableau récapitulatif des commandes Markdown utiles](#tableau-récapitulatif-des-commandes-markdown-utiles)
@@ -75,18 +78,48 @@ output: word_document
 ---
 ```
 
+
+## Ne pas confondre un script R et un fichier R Markdown
+
+Il est très important de bien distinguer **un script R classique** (`.R`) d’un **document R Markdown** (`.Rmd`), car ils n’ont **pas le même objectif** ni la même structure.
+
+### Le script R `.R`
+
+Un **script R** est un **fichier de code pur**.  
+Il contient uniquement du code R, ligne après ligne, exécuté directement dans la console.
+
+- Pour tester du code, faire des analyses exploratoires, créer des fonctions ou des scripts automatisés.  
+- Les résultats apparaissent dans la **console** ou dans les **fenêtres graphiques** de RStudio.  
+- Aucune mise en forme textuelle ni export automatique.
+
+
+### Le script R Markdown `.Rmd`
+
+Un **fichier R Markdown** combine **texte**, **code** et **résultats** dans un même document.  
+Il est conçu pour produire un **rapport dynamique** et **formaté**.
+
+- Pour rédiger des **rapports complets**, tutoriels, notes de cours ou publications.  
+- Le document peut être **"tricoté" (knit)** pour produire un fichier final (.html, .pdf, .docx).  
+- Les résultats et graphiques sont intégrés directement dans le document final.
+
+:bulb: 
+- Le fichier `.R` est un **outil de développement**.  
+- Le fichier `.Rmd` est un **outil de communication**.
+
+
 ## Librairies à installer
 
 Avant de commencer, il est conseillé d’installer les packages suivants :
 
 ```r
-install.packages(c("rmarkdown", "knitr", "tinytex", "ggplot2"))
+install.packages(c("rmarkdown", "knitr", "ggplot2"))
 ```
 
 - **rmarkdown** → génération du document  
 - **knitr** → exécution et mise en forme des chunks  
-- **tinytex** → nécessaire pour exporter en PDF  
 - **ggplot2** → pour créer des graphiques
+
+Vous pouvez installer **tinytex** pour exporter en PDF 
 
 ## Conseils pratiques avant de se lancer
 
@@ -110,7 +143,6 @@ install.packages(c("rmarkdown", "knitr", "tinytex", "ggplot2"))
 | **Liste numérotée** | `1. Étape 1`<br>`2. Étape 2` | 1. Étape 1<br>2. Étape 2 |
 | **Citation** | `> citation` | > citation |
 | **Code en ligne** | `` `code` `` | `code` |
-| **Chunk R** | `chunk : `{r}` code` | (insère du code R exécuté) |
 | **Insérer variable R** | `` `r ma_variable` `` | Affiche la valeur de `ma_variable` |
 | **Séparation horizontale** | `---` | --- |
 
