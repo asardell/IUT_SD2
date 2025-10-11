@@ -31,11 +31,11 @@
 ## Objectifs
 
 Voici les objectifs de ce module :
-- [x] Créer un Rmarkdown
-- [x] Utiliser les options des Chunks
-- [x] Afficher des tableaux
-- [x] Utiliser des variables
-- [x] Utiliser des paramètres
+- [x] Créer et structurer un document R Markdown
+- [x] Utiliser des chunks de code avec options et noms
+- [x] Intégrer texte, tableaux et graphiques
+- [x] Exploiter des paramètres et variables pour produire des rapports dynamiques
+
 
 ## Pourquoi utiliser R Markdown ?
 
