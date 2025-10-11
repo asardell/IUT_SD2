@@ -17,7 +17,7 @@ Voici les objectifs de ce module :
 2. Chapitre 2 : Utiliser une API pour extraire des données
 3. Chapitre 3 : Initiation à Git avec GitHub Desktop
 4. Chapitre 4 : Initiation au R Markdown
-5. Chapitre 5 : [Initiation au R Shiny](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html)
+5. Chapitre 5 : Initiation au R Shiny
 
 ## Liens utiles
 
