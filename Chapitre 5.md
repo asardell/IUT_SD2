@@ -607,8 +607,14 @@ Dans Shiny, il est courant d’ajouter des images pour illustrer vos application
 ```r
 ui <- fluidPage(
   titlePanel("Image locale"),
-  img(src = "www/mon_image.png", height = "200px")
+  imageOutput("image1")
 )
+
+server <- function(input,output){
+  output$image1 <- renderImage( {
+    list(src = "/www/mon_image.png", height  = "50%")
+  })
+}
 ```
 
 :bulb:  
