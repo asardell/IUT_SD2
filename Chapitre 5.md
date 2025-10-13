@@ -96,6 +96,12 @@ Une application Shiny peut être structurée de deux façons :
 
 :bulb: Dans les deux cas, la structure reste la même : **interface + logique serveur**.
 
+Pour lancer l'application, il faut se placer dans le dossier où il y a les projets et lancer : 
+
+```r
+runApp('nom-projet') #correspond au dossier avec votre script ui.R et server.R
+```
+
 ## Les objets réactifs dans Shiny
 
 Dans Shiny, un **objet réactif** est un élément de sortie qui se met à jour automatiquement lorsque ses **données ou widgets associés changent**.  
