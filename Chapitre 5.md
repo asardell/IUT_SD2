@@ -68,10 +68,10 @@ Shiny est un package R permettant de créer des **applications web interactives*
 ### Étapes pour créer un projet Shiny
 
 1. Ouvrir **RStudio**.
-2. Aller dans **File → New Project → New Directory → Shiny Web Application**.
+2. Aller dans **File → New File → Shiny Web Application**.
 3. Donner un **nom** au projet et choisir l’**emplacement** sur votre disque.
 4. Choisir si vous voulez un **fichier unique (`app.R`)** ou deux fichiers séparés (`ui.R` et `server.R`).  
-5. Cliquer sur **Create Project**.  
+5. Cliquer sur **Create**.  
 6. RStudio génère automatiquement les fichiers nécessaires avec un exemple minimal de Shiny.  
 
 :bulb: Dans un projet R Shiny, toujours travailler dans un **projet RStudio** pour organiser correctement les fichiers, les données et les dépendances.
